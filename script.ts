@@ -1,4 +1,3 @@
-// JSON data for Animals
 const catsData = [
   {
     name: "Lion",
@@ -91,7 +90,6 @@ const fishData = [
   },
 ];
 
-// AnimalTable Class
 class AnimalTable {
   private data: any[];
   private tableBodyId: string;
@@ -155,26 +153,22 @@ class AnimalTable {
   }
 }
 
-// Initialize Tables
 const catsTable = new AnimalTable(catsData, "catsTableBody");
 const dogsTable = new AnimalTable(dogsData, "dogsTableBody");
 const fishTable = new AnimalTable(fishData, "fishTableBody");
 
-// Render Tables on Load
 document.addEventListener("DOMContentLoaded", () => {
   catsTable.render();
   dogsTable.render();
   fishTable.render();
 });
 
-// Sort Function
 function sortTable(tableId: string, field: string): void {
   if (tableId === "cats") catsTable.sort(field);
   else if (tableId === "dogs") dogsTable.sort(field);
   else if (tableId === "fish") fishTable.sort(field);
 }
 
-// Add Animal Function
 function addAnimal(tableId: string): void {
   const name = prompt("Enter animal name:");
   const location = prompt("Enter animal location:");
@@ -191,7 +185,6 @@ function addAnimal(tableId: string): void {
   }
 }
 
-// Delete Animal Function
 function deleteAnimal(tableId: string, name: string): void {
   if (confirm(`Are you sure you want to delete ${name}?`)) {
     if (tableId === "cats") catsTable.delete(name);
@@ -200,7 +193,6 @@ function deleteAnimal(tableId: string, name: string): void {
   }
 }
 
-// Edit Animal Function
 function editAnimal(tableId: string, name: string): void {
   const newName = prompt("Enter new name:", name);
   const newLocation = prompt("Enter new location:");
