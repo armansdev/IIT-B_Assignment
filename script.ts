@@ -110,17 +110,17 @@ class AnimalTable {
     return this.data
       .map(
         (animal) => `
-            <tr>
-                <td>${animal.name}</td>
-                <td>${animal.location}</td>
-                <td>${animal.size}</td>
-                <td><img src="${animal.image}" alt="${animal.name}" class="animal-image" width="100"></td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="editAnimal('${this.tableBodyId}', '${animal.name}')">Edit</button>
-                    <button class="btn btn-danger btn-sm" onclick="deleteAnimal('${this.tableBodyId}', '${animal.name}')">Delete</button>
-                </td>
-            </tr>
-        `
+          <tr>
+              <td>${animal.name}</td>
+              <td>${animal.location}</td>
+              <td>${animal.size}</td>
+              <td><img src="${animal.image}" alt="${animal.name}" class="animal-image" width="100"></td>
+              <td>
+                  <button class="btn btn-warning btn-sm" onclick="editAnimal('${this.tableBodyId}', '${animal.name}')">Edit</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteAnimal('${this.tableBodyId}', '${animal.name}')">Delete</button>
+              </td>
+          </tr>
+      `
       )
       .join("");
   }
@@ -173,7 +173,7 @@ function addAnimal(tableId: string): void {
   const name = prompt("Enter animal name:");
   const location = prompt("Enter animal location:");
   const size = prompt("Enter animal size:");
-  const image = prompt("Enter url of animal image");
+  const image = "default.png";
 
   if (name && location && size) {
     const newAnimal = { name, location, size, image };
@@ -197,14 +197,14 @@ function editAnimal(tableId: string, name: string): void {
   const newName = prompt("Enter new name:", name);
   const newLocation = prompt("Enter new location:");
   const newSize = prompt("Enter new size:");
-  const newImage = prompt("Enter new url of image:");
+  const image = "default.png";
 
   if (newName && newLocation && newSize) {
     const newData = {
       name: newName,
       location: newLocation,
       size: newSize,
-      image: newImage,
+      image: image,
     };
     if (tableId === "cats") catsTable.edit(name, newData);
     else if (tableId === "dogs") dogsTable.edit(name, newData);
@@ -213,3 +213,8 @@ function editAnimal(tableId: string, name: string): void {
     alert("All fields are required!");
   }
 }
+
+(window as any).addAnimal = addAnimal;
+(window as any).editAnimal = editAnimal;
+(window as any).deleteAnimal = deleteAnimal;
+(window as any).sortTable = sortTable;
